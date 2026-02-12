@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>document</title>
+        <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <h1 id="d2"></h1>
+        <table border="2">
+            <tbody id="d1"></tbody>
+        </table>
+        <button onclick="nextset()">Next</button>
+        <script>
+            var s = 0;
+            function genTable(products) {
+                 document.getElementById("d1").innerText = ""
+                products.forEach(function (product) {
+                    var ntr = document.createElement("tr")
+                    var titletd = document.createElement("td")
+                    titletd.innerText = product.title
+                    var categorytd = document.createElement("td")
+                    categorytd.innerText = product.category
+                    ntr.appendChild(titletd)
+                    ntr.appendChild(categorytd)
+                    document.getElementById("d1").appendChild(ntr)
+                })
+            }
+            function getProducts(){
+
+                axios.get("https://dummyjson.com/product?limit=10&skip=" + s)
+                .then(function(res) {genTable(res.data.products),console.log(res.data.products)})
+                console.log("Gopa")
+            }
+            function nextset() {
+                s = s + 10;
+                getProducts();
+            }
+
+            getProducts()
+       
+        </script>
+    </body>
+</html>
