@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document</title>
+        <style>
+            #d1{
+                display: none;
+            }
+            #d2:checked~#d1{
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="checkbox"id="d2">
+        <label for="d2">click here</label>
+        <h1 id="d1"> Hello checkbox you are on</h1>
+    </body>
+</html>
